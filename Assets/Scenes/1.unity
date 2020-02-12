@@ -62085,8 +62085,8 @@ GameObject:
   - component: {fileID: 394826055}
   - component: {fileID: 394826057}
   - component: {fileID: 394826059}
-  - component: {fileID: 394826058}
   - component: {fileID: 394826051}
+  - component: {fileID: 394826060}
   m_Layer: 8
   m_Name: Toto
   m_TagString: Player
@@ -62236,23 +62236,6 @@ MonoBehaviour:
   runSpeed: 22
   jump: 0
   horizontalMove: 0
---- !u!114 &394826058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394826050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f0a23b1ba0ccf24fba9d6b29d07b3a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  armature: {fileID: 489102097}
-  playerMovement: {fileID: 394826057}
-  characterController2D: {fileID: 394826053}
-  totoSkills: {fileID: 394826059}
-  snowBall: []
 --- !u!114 &394826059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62279,6 +62262,21 @@ MonoBehaviour:
   dash: 0
   legsPartSys: {fileID: 17331580}
   rb: {fileID: 394826054}
+--- !u!114 &394826060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394826050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bedb10afbbd71d4aabb468f2dab4e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snowBall:
+  - {fileID: 17331580}
+  - {fileID: 200394314}
 --- !u!1 &399351777
 GameObject:
   m_ObjectHideFlags: 0
@@ -64102,7 +64100,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.153502, y: 1.1049302, z: -9.269531}
+  m_LocalPosition: {x: -18.153502, y: 0.55493015, z: -9.269531}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 553597834}
@@ -64288,7 +64286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544298623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.153502, y: 1.1049302, z: -9.269531}
+  m_LocalPosition: {x: -18.153502, y: 0.55493015, z: -9.269531}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1504333473}
@@ -108636,7 +108634,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333525017}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.153502, y: 1.1049302, z: -9.269531}
+  m_LocalPosition: {x: -18.153502, y: 0.55493015, z: -9.269531}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 739521526}
@@ -124669,7 +124667,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965095493}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.153502, y: 1.1049302, z: -9.269531}
+  m_LocalPosition: {x: -18.153502, y: 0.55493015, z: -9.269531}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1039913826}
