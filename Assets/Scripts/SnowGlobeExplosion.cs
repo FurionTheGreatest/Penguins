@@ -20,7 +20,7 @@ public class SnowGlobeExplosion : MonoBehaviour {
     // Use this for initialization
     void Start () {
         characterSelect = GameObject.Find("CharacterSelectManager").GetComponent<CharacterSelect>();
-        totoSkills = GameObject.Find("Toto").GetComponent<TotoSkills>();
+        //totoSkills = GameObject.Find("Toto").GetComponent<TotoSkills>();
         blockCol = GetComponentInChildren<BoxCollider2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
 
@@ -33,7 +33,9 @@ public class SnowGlobeExplosion : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         player = characterSelect.currActiveCharacter;
-        dash = totoSkills.dash;
+        if (characterSelect.currActiveCharacter.name == "Toto")
+            dash = characterSelect.currActiveCharacter.GetComponent<TotoSkills>().dash;
+        else return;
 
          if (dash && blockCol != null)
          {
@@ -43,7 +45,7 @@ public class SnowGlobeExplosion : MonoBehaviour {
               blockCol.enabled = true;
 
         if (Mathf.Abs(player.transform.position.x - gameObject.transform.position.x) < 1.3f && 
-            Mathf.Abs(player.transform.position.y - gameObject.transform.position.y) < 4.3f && dash == true)
+            Mathf.Abs(player.transform.position.y - gameObject.transform.position.y) < 4.3f && dash)
         {
             DestroyImmediate(blockCol);
             sprite.enabled = false;
