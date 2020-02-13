@@ -30873,7 +30873,6 @@ GameObject:
   - component: {fileID: 167697775}
   - component: {fileID: 167697774}
   - component: {fileID: 167697780}
-  - component: {fileID: 167697773}
   - component: {fileID: 167697781}
   - component: {fileID: 167697779}
   m_Layer: 8
@@ -30882,7 +30881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &167697772
 Transform:
   m_ObjectHideFlags: 0
@@ -30902,22 +30901,6 @@ Transform:
   m_Father: {fileID: 785593473}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &167697773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 167697771}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3485a1b1c6ea7f64caf0c730fba4524b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  armature: {fileID: 983500743}
-  playerMovement: {fileID: 167697774}
-  characterController2D: {fileID: 167697778}
-  karyakSkills: {fileID: 167697780}
 --- !u!114 &167697774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140456,14 +140439,14 @@ GameObject:
   - component: {fileID: 2119451630}
   - component: {fileID: 2119451629}
   - component: {fileID: 2119451636}
-  - component: {fileID: 2119451637}
+  - component: {fileID: 2119451638}
   m_Layer: 8
   m_Name: Lolo
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2119451628
 Transform:
   m_ObjectHideFlags: 0
@@ -140678,7 +140661,7 @@ SortingGroup:
   m_SortingLayerID: 1915623693
   m_SortingLayer: 1
   m_SortingOrder: 0
---- !u!114 &2119451637
+--- !u!114 &2119451638
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140687,13 +140670,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2119451627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4d0d91ed392d364a8066063658323ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 14d7aab39e724af4787ed4b5baee65b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armature: {fileID: 1391004561}
-  playerMovement: {fileID: 2119451630}
-  characterController2D: {fileID: 2119451634}
-  loloSkills: {fileID: 2119451629}
 --- !u!1 &2122890218
 GameObject:
   m_ObjectHideFlags: 0
