@@ -16,7 +16,6 @@ public class KaryakAnimator : MonoBehaviour
     private static readonly string idleAnim = "idl_eyebrow+glass";
     private static readonly string runAnim = "run";
     private static readonly string fallAnim = "fall";
-    private static readonly string invStartAnim = "inv_start";
     private static readonly string invAnim = "inv_cast";
     /// <summary>
     /// animation states
@@ -41,7 +40,6 @@ public class KaryakAnimator : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(state);
         //get some values for condition check
         yVelocity = characterController2D.velocity.y;
         speed = Mathf.Abs(playerMovement.horizontalMove);
@@ -58,9 +56,7 @@ public class KaryakAnimator : MonoBehaviour
         if (karyakSkills.curState == KaryakSkills.State.Invisible)
         {
             Inv();
-        }
-        //else state = State.NULL;
-
+        }        
     }
     #region Animations
     public void Idle()
