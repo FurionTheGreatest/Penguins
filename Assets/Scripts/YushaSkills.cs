@@ -40,6 +40,7 @@ public class YushaSkills : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                //Debug.Log("fly");
                 rb.gravityScale = gravityValForParachute;
                 isFlying = true;
             }
