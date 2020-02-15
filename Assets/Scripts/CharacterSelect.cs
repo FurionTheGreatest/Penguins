@@ -91,9 +91,8 @@ public class CharacterSelect : MonoBehaviour {
             {                
                 canSelectCharacter = false;
                 break;
-            }
-            else canSelectCharacter = true;
-        }       
+            }            
+        }
 
         return canSelectCharacter;
     }
@@ -110,8 +109,7 @@ public class CharacterSelect : MonoBehaviour {
                 {
                     canSelectCharacter = false;
                     break;
-                }
-                else canSelectCharacter = true;
+                }                
             }
             else
             {
