@@ -39,7 +39,7 @@ public class TotoAnimator : MonoBehaviour
     private float disabledRunSpeed = 0f;
 
     public ParticleSystem[] snowBall;
-
+    DragonBones.AnimationState animationState;
     void Start()
     {
         armatureComponent = transform.GetComponentInChildren<UnityArmatureComponent>();
@@ -59,6 +59,9 @@ public class TotoAnimator : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(state);
+        animationState = armatureComponent.animation.lastAnimationState;
+        
         //get some values for condition check
         grounded = characterController2D.m_Grounded;
         speed = Mathf.Abs(playerMovement.horizontalMove);
@@ -68,30 +71,34 @@ public class TotoAnimator : MonoBehaviour
         if (speed == 0 && grounded && !isRolling)         
              PlayIdle();         
             
-        if (!armatureComponent.animation.isPlaying)
+        /*if (!armatureComponent.animation.isPlaying)
+        {
             state = State.NULL;
+            PlayIdle();
+        }    */        
         if (speed != 0 && grounded && !isRolling)        
             Run(speed/2);
         if (yVelocity > 0.5f)        
             Jump();
-            
+
+        //Debug.Log(totoSkills.dashKeyPressed);
         if (totoSkills.dashKeyPressed && !totoSkills.dashTimeEnded)
         {
             playerMovement.runSpeed = disabledRunSpeed;
             Dash();
-            state = State.DASH_START;
         }
-        if (totoSkills.dashTimeEnded || !isRolling)
+        if (totoSkills.dashTimeEnded || !isRolling || totoSkills.dashKeyReleased)
         {
             playerMovement.runSpeed = normalRunSpeed;
             StopRolling();
         }
-        if (totoSkills.dashKeyReleased)
+        /*if (totoSkills.dashKeyReleased)
         {
             playerMovement.runSpeed = normalRunSpeed;
-            state = State.NULL;
-            StopRolling();            
-        }
+            StopRolling();
+            //state = State.NULL;
+        }*/
+        //Debug.Log(animationState.name);
     }
     /// <summary>
     /// pick a random animation of idle
@@ -112,9 +119,9 @@ public class TotoAnimator : MonoBehaviour
     public void Idle()
     {
         if (state != State.IDLE)
-        {            
-            armatureComponent.animation.FadeIn(idleAnim, 0, 1);
+        {
             armatureComponent.animation.timeScale = 1f;
+            armatureComponent.animation.FadeIn(idleAnim, 0, -1);            
             state = State.IDLE;
         }
     }
@@ -122,9 +129,10 @@ public class TotoAnimator : MonoBehaviour
     {
         if (state != State.IDLE)
         {
-            armatureComponent.animation.FadeIn(idleNoClipAnim, 0, 1);
             armatureComponent.animation.timeScale = 1f;
+            armatureComponent.animation.FadeIn(idleNoClipAnim, 0, 1);            
             state = State.IDLE;
+            Idle();
         }
     }
     public void Run(float speed)
@@ -159,25 +167,26 @@ public class TotoAnimator : MonoBehaviour
     }
     public void Dash()
     {
-        if (state != State.DASH_START)
+        if (animationState.name != dashStartAnim)
         {
-            armatureComponent.animation.FadeIn(dashStartAnim, 0, 1);
             armatureComponent.animation.timeScale = 1f;
-            Invoke("Roll", armatureComponent.animation.lastAnimationState._duration);
-            state = State.DASH_START;            
+            armatureComponent.animation.FadeIn(dashStartAnim, 0, 1);            
+            //state = State.DASH_START;
         }
+        Invoke("Roll", armatureComponent.animation.lastAnimationState._duration);
     }
     void Roll()
     {
-        if (state != State.DASH_CAST)
+        if (animationState.name != dashAnim && state != State.IDLE || state != State.IDLE_NO_CLIP)
         {
+            armatureComponent.animation.timeScale = 1f;
             foreach (ParticleSystem ps in snowBall)
             {
 #pragma warning disable CS0618 // Тип или член устарел
                 ps.enableEmission = true;
 #pragma warning restore CS0618 // Тип или член устарел
             }
-            armatureComponent.animation.FadeIn(dashAnim, -1.0f, -1, 0);
+            armatureComponent.animation.FadeIn(dashAnim, -1.0f, -1);
             state = State.DASH_CAST;
         }
     }
