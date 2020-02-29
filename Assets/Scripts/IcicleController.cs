@@ -23,7 +23,7 @@ public class IcicleController : MonoBehaviour {
 
     LevelManager levelManager;
     GameManagerr gameManagerr;
-    public UnityEvent icicleFall;
+    //public UnityEvent icicleFall;
 
     public GameObject failedUI;
 
@@ -44,7 +44,7 @@ public class IcicleController : MonoBehaviour {
             for (int i = 0; i < colliders.Length; i++)
             {
                 if (colliders[i].transform.CompareTag("Player") && !rolled)
-                    icicleFall.Invoke();
+                    IcicleFall();
             }
         }
     }

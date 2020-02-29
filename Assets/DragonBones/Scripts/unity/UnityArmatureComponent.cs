@@ -152,12 +152,20 @@ namespace DragonBones
         public void DBClear()
         {
             bonesRoot = null;
-            if (_armature != null)
+            if (this._armature != null)
             {
-                _armature = null;
-                if (_disposeProxy)
+                this._armature = null;
+                if (this._disposeProxy)
                 {
-                    UnityFactoryHelper.DestroyUnityObject(gameObject);
+                    try
+                    {
+                        var go = gameObject;
+                        UnityFactoryHelper.DestroyUnityObject(gameObject);
+                    }
+                    catch (System.Exception e)
+                    {
+
+                    }
                 }
             }
 

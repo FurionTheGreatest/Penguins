@@ -14,7 +14,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
     public Vector2 velocity;
-	const float k_GroundedRadius = .3f; // Radius of the overlap circle to determine if grounded
+	const float k_GroundedRadius = .1f; // Radius of the overlap circle to determine if grounded
 	public bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
@@ -35,7 +35,7 @@ public class CharacterController2D : MonoBehaviour
     public Transform GroundCheck { get => m_GroundCheck; set => m_GroundCheck = value; }
     public Transform CeilingCheck { get => m_CeilingCheck; set => m_CeilingCheck = value; }
     public LayerMask WhatIsGround { get => m_WhatIsGround; set => m_WhatIsGround = value; }
-
+    bool isFlying = false;
     private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -56,10 +56,9 @@ public class CharacterController2D : MonoBehaviour
     private void FixedUpdate()
 	{        
         velocity = m_Rigidbody2D.velocity;
-        bool isFlying = false;
-
+        
         bool wasGrounded = m_Grounded;
-		m_Grounded = false;
+        m_Grounded = false;
 
         if (GameObject.Find("Yusha") != null)
         {
@@ -87,13 +86,11 @@ public class CharacterController2D : MonoBehaviour
         {
             if (colliders[i].gameObject != gameObject)
             {
-                m_Grounded = true;
-                if (!wasGrounded)
-                    OnLandEvent.Invoke();
-            }
+                //Debug.Log(colliders[i].gameObject);
+                m_Grounded = true;                
+            } 
         }
     }
-
 
 	public void Move(float move, bool crouch, bool jump)
 	{

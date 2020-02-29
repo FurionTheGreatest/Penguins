@@ -36,20 +36,16 @@ public class YushaSkills : MonoBehaviour {
     }
     // Update is called once per frame
     void FixedUpdate () {
-        if (!controller.m_Grounded)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                //Debug.Log("fly");
-                rb.gravityScale = gravityValForParachute;
-                isFlying = true;
-            }
-        }   
-        if (controller.m_Grounded)
-        {
-            rb.gravityScale = standGravVal;
+
+        if (Input.GetKey(KeyCode.Space))
+            isFlying = true;
+         else            
             isFlying = false;
-        }            
+        
+        if (isFlying)//|| !controller.m_Grounded
+            rb.gravityScale = gravityValForParachute;
+        else
+            rb.gravityScale = standGravVal;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

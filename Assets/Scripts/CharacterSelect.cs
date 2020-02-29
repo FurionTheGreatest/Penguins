@@ -36,7 +36,7 @@ public class CharacterSelect : MonoBehaviour {
         if (characters[3].activeInHierarchy == true)
             indexOfPlayer = 3;
         ActivateCamera(indexOfPlayer);
-
+        //DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame

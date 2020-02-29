@@ -7,15 +7,15 @@ public class GameManagerr : MonoBehaviour
 
     //AudioManager audioManager;
 
-    /*private void Start()
+    private void Start()
     {
-        if (audioManager == null)
+        /*if (audioManager == null)
         {
             audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         }
         audioManager.StopSound("Music");
-        audioManager.PlaySound("GameplayMusic");
-    }*/
+        audioManager.PlaySound("GameplayMusic");*/
+    }
     public void DisableMovement()
     {
         //audioManager.PlaySound("Death");
@@ -24,4 +24,5 @@ public class GameManagerr : MonoBehaviour
         player.GetComponent<PlayerMovement>().enabled = false;
         player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
     }
+
 }
