@@ -28,7 +28,7 @@ public class MoveTrampoline : MonoBehaviour
     void CallTrampoline()
     {        
         canvas.SetActive(true);
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKey(KeyCode.T))
             trampoline.GetComponent<Transform>().position = newPosition;        
     }
 }

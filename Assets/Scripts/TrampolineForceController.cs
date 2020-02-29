@@ -12,12 +12,15 @@ public class TrampolineForceController : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         player = collision.gameObject;
-        
-        if (collision.gameObject.tag.Equals("Player"))
-        {
-            onTop = true;
-            Jump();
-        }        
+
+        Jump();       
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        player = collision.gameObject;
+
+        Jump();
     }
 
     void Jump()
