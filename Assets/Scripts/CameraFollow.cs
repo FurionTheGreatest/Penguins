@@ -6,8 +6,8 @@ public class CameraFollow : MonoBehaviour
 {
     public Transform TargetToFollow;
 
-    [SerializeField] private Vector3 _cameraOffset;
-    [SerializeField] private float _cameraVelocity;
+    [SerializeField] private Vector3 _cameraOffset = new Vector3(0, 4.5f, -15f);
+    [SerializeField] private float _cameraVelocity = 0.15f;
     private Vector3 _smoothSpeed;
     private Vector3 _desiredPosition;
     private Vector3 _smoothedPosition;

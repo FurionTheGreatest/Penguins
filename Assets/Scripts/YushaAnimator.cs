@@ -14,11 +14,11 @@ public class YushaAnimator : MonoBehaviour
     /// names of animations
     /// </summary>
     private static readonly string idleAnim = "idl";
-    private static readonly string idleUmbrAnim = "zont_idl";
+    //private static readonly string idleUmbrAnim = "zont_idl";
     private static readonly string runAnim = "run";
-    private static readonly string runUmbrAnim = "zont_run";
+    //private static readonly string runUmbrAnim = "zont_run";
     private static readonly string jumpAnim = "jump";
-    private static readonly string jumpUmbrAnim = "zont_jump";
+    //private static readonly string jumpUmbrAnim = "zont_jump";
     private static readonly string openUmbrAnim = "zont_open";
     private static readonly string flyUmbrAnim = "zont_fly";
     /// <summary>

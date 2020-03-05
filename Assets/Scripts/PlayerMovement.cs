@@ -39,8 +39,8 @@ public class PlayerMovement : MonoBehaviour {
                 walkCD = 0.3f;
                 break;
         }*/
-#if UNITY_EDITOR
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+
+        
 
         if (Input.GetButtonDown("Jump") || fixedJoystick.Vertical > 0.5f)
         {
@@ -50,25 +50,14 @@ public class PlayerMovement : MonoBehaviour {
                 //if(controller.m_Grounded)
                 //audioManager.PlaySound("Jump");
             }
-
         }
-#endif
+
 
 #if UNITY_ANDROID
         horizontalMove = fixedJoystick.Horizontal * runSpeed;
-
-        if (fixedJoystick.Vertical > _jostickPositionToJump)
-        {
-            if (controller.m_JumpForce != 0)
-            {
-                jump = true;
-                //if(controller.m_Grounded)
-                //audioManager.PlaySound("Jump");
-            }
-
-        }
+#elif UNITY_EDITOR
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 #endif
-        //Debug.Log();
 
         /*if (Mathf.Abs(horizontalMove) > 0 && controller.m_Grounded)
         {

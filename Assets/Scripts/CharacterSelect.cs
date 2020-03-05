@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterSelect : MonoBehaviour {
 
+    public AudioManager audioManager;
     public TotoSkills totoSkills;
     public KaryakSkills karyakSkills;
     public LoloSkills loloSkills;
@@ -14,16 +15,17 @@ public class CharacterSelect : MonoBehaviour {
     public bool canSelectCharacter = true;
 
     public GameObject currActiveCharacter;
-    Transform playerTransform;
 
-    public CameraFollow camera;
-    private int indexOfPlayer;
+    private CameraFollow Camera;
+
+    private Transform playerTransform;
+    private int indexOfPlayer = 0;
 
     private Vector3 lastPos;
     private Vector3 lastScale;
 
     private bool grounded;
-    public AudioManager audioManager;
+
 
     void Start() {
         if (characters[0].activeInHierarchy == true)
@@ -35,16 +37,16 @@ public class CharacterSelect : MonoBehaviour {
         if (characters[3].activeInHierarchy == true)
             indexOfPlayer = 3;
 
-        if(camera == null)
+        if(Camera == null)
         {
-            Debug.LogError("Camera is not found");
+            Camera = FindObjectOfType<CameraFollow>();
         }
 
         if(currActiveCharacter == null)
         {
             currActiveCharacter = GameObject.FindGameObjectWithTag("Player");
             playerTransform = currActiveCharacter.transform;
-            camera.TargetToFollow = playerTransform;
+            Camera.TargetToFollow = playerTransform;
         }
     }
 
@@ -156,6 +158,6 @@ public class CharacterSelect : MonoBehaviour {
 
     void CameraFollow(Transform playerToFollow)
     {
-        camera.TargetToFollow = playerToFollow;
+        Camera.TargetToFollow = playerToFollow;
     }
 }
