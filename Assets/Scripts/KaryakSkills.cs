@@ -39,7 +39,6 @@ public class KaryakSkills : MonoBehaviour {
     // Use this for initialization
     void Start () {
         curState = State.Normal;
-        //colorOfSprite = GameObject.Find("Karyak").GetComponent<SpriteRenderer>().color;
 
         normalRunSpeed = playerMovement.runSpeed;
         doubledSpeed = normalRunSpeed * 2;
@@ -53,15 +52,14 @@ public class KaryakSkills : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyDown(KeyCode.F) && readyToUse)
+        /*if (Input.GetKeyDown(KeyCode.F) && readyToUse)
         {
-
             curState = State.Invisible;
             invisCasts = true;
         }
-        else invisCasts = false;
+        else invisCasts = false;*/
 
-        if (Input.GetKeyDown(KeyCode.G) && readyToUse)
+        if (Input.GetKeyDown(KeyCode.F) && readyToUse)
         {
             //audioManager.PlaySound("TimeSlow");
             curState = State.TimeSlow;

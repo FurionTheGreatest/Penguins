@@ -57,7 +57,7 @@ public class YushaAnimator : MonoBehaviour
             Idle();
 
         if (speed != 0 && grounded)
-            Run(speed / 2);
+            Run(speed / 3);
 
         if (yVelocity > 0.5f)
             Jump();

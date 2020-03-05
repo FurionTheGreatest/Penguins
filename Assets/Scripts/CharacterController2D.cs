@@ -75,8 +75,7 @@ public class CharacterController2D : MonoBehaviour
             failedUI.SetActive(true);
             gameManagerr.DisableMovement();
             Debug.Log("Killed by falling");
-        }
-        
+        }        
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheck.position, k_GroundedRadius, WhatIsGround);
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground

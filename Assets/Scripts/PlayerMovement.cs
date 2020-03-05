@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(FixedJoystick))]
 public class PlayerMovement : MonoBehaviour {
 
     public CharacterController2D controller;
@@ -8,18 +9,23 @@ public class PlayerMovement : MonoBehaviour {
     public bool jump = false;
     public float horizontalMove = 0f;
     public static PlayerMovement instance;
+
+    public FixedJoystick fixedJoystick;
     //public AudioManager audioManager;
 
-    /*bool played = false;
-    float walkCD = 0.5f;
+    //bool played = false;
+    //float walkCD = 0.5f;
+    private float _jostickPositionToJump = 0.4f;
 
     private void Start()
     {
-        if (audioManager == null)
+        /*if (audioManager == null)
         {
             audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        }
-    }*/
+        }*/
+        if (fixedJoystick == null)
+            fixedJoystick = FindObjectOfType<FixedJoystick>();
+    }
 
     void Update () {
         /**switch (runSpeed)
@@ -33,15 +39,43 @@ public class PlayerMovement : MonoBehaviour {
                 walkCD = 0.3f;
                 break;
         }*/
-
+#if UNITY_EDITOR
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-        if(Mathf.Abs(horizontalMove) > 0 && controller.m_Grounded)
+        if (Input.GetButtonDown("Jump") || fixedJoystick.Vertical > 0.5f)
         {
-            /*if(!played)
-                StartCoroutine(CD());*/
+            if (controller.m_JumpForce != 0)
+            {
+                jump = true;
+                //if(controller.m_Grounded)
+                //audioManager.PlaySound("Jump");
+            }
+
         }
-        if (Input.GetButtonDown("Jump"))
+#endif
+
+#if UNITY_ANDROID
+        horizontalMove = fixedJoystick.Horizontal * runSpeed;
+
+        if (fixedJoystick.Vertical > _jostickPositionToJump)
+        {
+            if (controller.m_JumpForce != 0)
+            {
+                jump = true;
+                //if(controller.m_Grounded)
+                //audioManager.PlaySound("Jump");
+            }
+
+        }
+#endif
+        //Debug.Log();
+
+        /*if (Mathf.Abs(horizontalMove) > 0 && controller.m_Grounded)
+        {
+            if(!played)
+                StartCoroutine(CD());
+    }*/
+        if (Input.GetButtonDown("Jump") || fixedJoystick.Vertical > _jostickPositionToJump)
         {
             if(controller.m_JumpForce != 0)
             {

@@ -16,17 +16,16 @@ public class CharacterSelect : MonoBehaviour {
     public GameObject currActiveCharacter;
     Transform playerTransform;
 
-    public GameObject[] cameras;
+    public CameraFollow camera;
     private int indexOfPlayer;
 
     private Vector3 lastPos;
+    private Vector3 lastScale;
 
     private bool grounded;
     public AudioManager audioManager;
-    // Use this for initialization
+
     void Start() {
-        currActiveCharacter = GameObject.FindGameObjectWithTag("Player");
-        playerTransform = currActiveCharacter.transform;
         if (characters[0].activeInHierarchy == true)
             indexOfPlayer = 0;
         if (characters[1].activeInHierarchy == true)
@@ -35,11 +34,20 @@ public class CharacterSelect : MonoBehaviour {
             indexOfPlayer = 2;
         if (characters[3].activeInHierarchy == true)
             indexOfPlayer = 3;
-        ActivateCamera(indexOfPlayer);
-        //DontDestroyOnLoad(gameObject);
+
+        if(camera == null)
+        {
+            Debug.LogError("Camera is not found");
+        }
+
+        if(currActiveCharacter == null)
+        {
+            currActiveCharacter = GameObject.FindGameObjectWithTag("Player");
+            playerTransform = currActiveCharacter.transform;
+            camera.TargetToFollow = playerTransform;
+        }
     }
 
-    // Update is called once per frame
     void Update() {
         if (audioManager == null)
         {
@@ -47,7 +55,6 @@ public class CharacterSelect : MonoBehaviour {
         }
         grounded = currActiveCharacter.GetComponent<CharacterController2D>().m_Grounded;
 
-        //TODO check 
         if (!grounded || totoSkills.dash || karyakSkills.curState != KaryakSkills.State.Normal || loloSkills.curState != LoloSkills.State.Normal)
         {
             canSelectCharacter = false;
@@ -60,9 +67,7 @@ public class CharacterSelect : MonoBehaviour {
             RestrictChecker();
             SnowRestrict();
         }
-            
 
-        //Debug.Log(lastPos);
         if (Input.GetKeyDown(KeyCode.Alpha1) && canSelectCharacter)
         {
             ActivatePlayer(0);
@@ -93,7 +98,6 @@ public class CharacterSelect : MonoBehaviour {
                 break;
             }            
         }
-
         return canSelectCharacter;
     }
 
@@ -120,10 +124,12 @@ public class CharacterSelect : MonoBehaviour {
 
         return canSelectCharacter;
     }
-
+    //TODO lastScale DB
     void ChangeTransformWithCharacterChanging(GameObject currentCharacter)
     {
-       currentCharacter.transform.position = lastPos;        
+       currentCharacter.transform.position = lastPos;
+       
+       //currentCharacter.transform.localScale = lastScale;
     }
 
     void ActivatePlayer(int index)
@@ -136,23 +142,20 @@ public class CharacterSelect : MonoBehaviour {
         {
             //last position of disabled character = to new character
             lastPos = playerTransform.position;
-
             //lastScale = playerTransform.localScale;
             foreach (var character in characters)
                 character.SetActive(false);
         
-        characters[index].SetActive(true);
-            ActivateCamera(index);
-        currActiveCharacter = characters[index];
-        ChangeTransformWithCharacterChanging(currActiveCharacter);
+            characters[index].SetActive(true);        
+            currActiveCharacter = characters[index];
+
+            CameraFollow(currActiveCharacter.transform);
+            ChangeTransformWithCharacterChanging(currActiveCharacter);
         }
     }
-    void ActivateCamera(int index)
+
+    void CameraFollow(Transform playerToFollow)
     {
-        foreach (GameObject camera in cameras)
-        {
-            camera.SetActive(false);
-        }
-        cameras[index].SetActive(true);
+        camera.TargetToFollow = playerToFollow;
     }
 }
