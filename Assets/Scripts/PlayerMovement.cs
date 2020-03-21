@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour {
     public float horizontalMove = 0f;
     public static PlayerMovement instance;
 
-    public FixedJoystick fixedJoystick;
+    private FixedJoystick fixedJoystick;
     //public AudioManager audioManager;
 
     //bool played = false;

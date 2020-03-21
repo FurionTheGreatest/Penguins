@@ -6,6 +6,7 @@ public class TotoSkills : MonoBehaviour {
     public CharacterController2D controller;
     public CharacterSelect characterSelect;
     public PlayerMovement playerMovement;
+    
 
     [Header("Dash")]
     public float maxDashTime = 2f;
@@ -22,6 +23,8 @@ public class TotoSkills : MonoBehaviour {
     public bool dash = false;
     [Space]
     public ParticleSystem legsPartSys;
+
+    private AbilityController abilityController;
     private ParticleSystem.EmissionModule emission;
 
     public Rigidbody2D rb;
@@ -33,13 +36,11 @@ public class TotoSkills : MonoBehaviour {
         emission = legsPartSys.emission;        
     }
     // Update is called once per frame
-    /*private void Start()
+    private void Start()
     {
-        if (audioManager == null)
-        {
-            audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        }
-    }*/
+        abilityController = FindObjectOfType<AbilityController>();
+    }
+    
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.F) || Input.GetKeyDown(KeyCode.F))
@@ -64,7 +65,7 @@ public class TotoSkills : MonoBehaviour {
 
     }
     void FixedUpdate() {
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKey(KeyCode.F) || abilityController.isButtonPressed)
         {
             if (currentDashTime < maxDashTime && controller.m_Grounded)
             {
@@ -77,7 +78,7 @@ public class TotoSkills : MonoBehaviour {
         }
     }
 
-    void Dash()
+    public void Dash()
     {
         if (rb.bodyType != RigidbodyType2D.Static)
         {
